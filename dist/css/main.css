@@ -1,3 +1,4 @@
+@import url("https://use.fontawesome.com/releases/v5.8.1/css/all.css");
 * {
   margin: 0;
   padding: 0;
@@ -15,18 +16,86 @@ body {
   display: flex;
   flex-direction: column; }
 
+nav {
+  height: 100%;
+  width: 100%; }
+  nav a {
+    text-decoration: none;
+    color: black; }
+    nav a:hover {
+      background: #36d4c1;
+      color: white; }
+  nav .sticky {
+    position: fixed;
+    z-index: 10; }
+  nav .navbar--container {
+    background: #36d4c1;
+    right: 0;
+    margin-top: 1.8rem;
+    height: 4rem;
+    width: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+  nav .navbar--icon {
+    font-size: 2em; }
+    nav .navbar--icon:hover {
+      color: white;
+      cursor: pointer; }
+  nav .nav--open {
+    right: 0;
+    padding-top: 1.2rem;
+    height: 100vh;
+    width: 13rem;
+    background: #fafafa;
+    transition: all 0.4s ease-out;
+    opacity: 1;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.8);
+    z-index: 1001; }
+  nav .nav--open-icon {
+    text-align: right;
+    padding: 20px; }
+    nav .nav--open-icon i {
+      font-size: 2em;
+      color: #36d4c1; }
+      nav .nav--open-icon i:hover {
+        color: black;
+        cursor: pointer; }
+  nav .nav--open-title {
+    font-family: serif;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    text-align: center;
+    margin-top: 35%; }
+  nav .nav--open-menu {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 30px; }
+    nav .nav--open-menu a {
+      font-size: 2em;
+      font-weight: 100;
+      font-family: serif;
+      padding: 15px 0; }
+  nav .close {
+    transform: translateX(300px);
+    transition: all 0.4s ease-out;
+    opacity: 0; }
+
 header {
   height: 5rem;
   max-width: 100%;
-  margin-top: 1rem;
+  margin: 1rem 0 2rem 0;
   background-image: url("../img/image.png");
   background-position: center;
-  background-repeat: no-repeat;
-  margin-bottom: 2rem; }
+  background-repeat: no-repeat; }
 
 footer {
   height: 3rem;
-  background-color: #36d4c1; }
+  background-color: #36d4c1;
+  margin-top: 2rem; }
 
 #index {
   display: grid;
@@ -74,28 +143,28 @@ footer {
         border-bottom: 0.4rem solid rgba(0, 0, 255, 0.5); }
         #index .cards .card.all-infected:hover, #index .cards .card.today-infected:hover {
           color: black;
-          background-color: rgba(0, 0, 255, 0.9);
+          background-color: rgba(0, 0, 255, 0.5);
           border-bottom: 0.4rem solid rgba(0, 0, 0, 0.9);
           transition: 0.8s; }
       #index .cards .card.all-recovered {
         border-bottom: 0.4rem solid rgba(0, 255, 0, 0.5); }
         #index .cards .card.all-recovered:hover {
           color: black;
-          background-color: rgba(0, 255, 0, 0.9);
+          background-color: rgba(0, 255, 0, 0.5);
           border-bottom: 0.4rem solid rgba(0, 0, 0, 0.9);
           transition: 0.8s; }
       #index .cards .card.all-deaths, #index .cards .card.today-deaths {
         border-bottom: 0.4rem solid rgba(255, 0, 0, 0.5); }
         #index .cards .card.all-deaths:hover, #index .cards .card.today-deaths:hover {
           color: black;
-          background-color: rgba(255, 0, 0, 0.9);
+          background-color: rgba(255, 0, 0, 0.5);
           border-bottom: 0.4rem solid rgba(0, 0, 0, 0.9);
           transition: 0.8s; }
       #index .cards .card.today-active {
         border-bottom: 0.4rem solid rgba(54, 212, 193, 0.5); }
         #index .cards .card.today-active:hover {
           color: black;
-          background-color: rgba(54, 212, 193, 0.9);
+          background-color: rgba(54, 212, 193, 0.5);
           border-bottom: 0.4rem solid rgba(0, 0, 0, 0.9);
           transition: 0.8s; }
   #index .info-1 {
@@ -122,10 +191,39 @@ footer {
     max-width: 50vw;
     margin-left: 4rem; }
     #index .chart #myChart {
-      max-width: 100%;
       height: 100%; }
 
-@media only screen and (min-height: 710px) {
+#map {
+  width: 100%;
+  height: calc(100vh - 13rem);
+  padding: 0 4rem;
+  display: flex;
+  flex-direction: column; }
+  #map .choices {
+    display: flex;
+    justify-content: space-around; }
+    #map .choices .select {
+      width: 6rem;
+      height: 2rem;
+      border-radius: 10px;
+      padding: 0.3rem;
+      text-align: center; }
+      #map .choices .select:hover {
+        cursor: pointer; }
+      #map .choices .select:active {
+        background-color: black; }
+      #map .choices .select:nth-child(1) {
+        border: solid 3px rgba(0, 0, 255, 0.8); }
+      #map .choices .select:nth-child(2) {
+        border: solid 3px rgba(0, 255, 0, 0.8); }
+      #map .choices .select:nth-child(3) {
+        border: solid 3px rgba(255, 0, 0, 0.8); }
+  #map #mapid {
+    margin-top: 1rem;
+    width: 100%;
+    height: 100%; }
+
+@media only screen and (min-height: 719px) {
   #index {
     display: grid;
     grid-template-columns: 1fr;
@@ -141,9 +239,27 @@ footer {
         margin: 2rem; }
     #index .chart {
       max-width: 100%;
-      margin: 1rem 1rem; } }
+      margin: 2rem 5rem; } }
 
-@media only screen and (max-width: 850px) {
+@media only screen and (min-height: 1600px) {
+  #index {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 3rem 5fr;
+    grid-template-areas: "info-1" "info-2" "country" "chart";
+    text-align: center; }
+    #index .cards {
+      margin: 1rem auto 3rem auto; }
+      #index .cards .card {
+        min-width: 10rem;
+        min-height: 12rem;
+        max-width: 15rem;
+        margin: 2rem; }
+    #index .chart {
+      max-width: 100%;
+      margin: 2rem 5rem; } }
+
+@media only screen and (max-width: 851px) {
   #index {
     display: grid;
     grid-template-columns: 1fr;
@@ -160,7 +276,7 @@ footer {
       max-width: 100%;
       margin: 0 1rem; } }
 
-@media only screen and (max-width: 525px) {
+@media only screen and (max-width: 526px) {
   #index {
     display: grid;
     grid-template-columns: 1fr;
@@ -176,7 +292,7 @@ footer {
       max-width: 100%;
       margin: 0 1rem; } }
 
-@media only screen and (max-width: 425px) {
+@media only screen and (max-width: 426px) {
   body {
     font-size: 12px; }
   #index {

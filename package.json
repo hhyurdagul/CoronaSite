@@ -4,12 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "sass": "node-sass -w scss/ -o dist/css/ --recursive"
+    "sass": "node-sass -w scss/ -o dist/css/ --recursive",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "ByteWaiser",
   "license": "ISC",
   "dependencies": {
     "node-sass": "^4.13.1"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
   }
 }
