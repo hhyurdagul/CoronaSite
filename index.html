@@ -9,15 +9,29 @@
 </head>
 <body>
     <div class="container">
+        <nav>
+            <div class="navbar--container sticky">
+                <div class="navbar--icon"><i class="fas fa-bars"></i></div>
+            </div>
+            <div class="nav--open close sticky">
+                <div class="nav--open-icon"><i class="fas fa-times"></i></div>
+                <div class="nav--open-title">explore</div>
+                <div class="nav--open-menu">
+                    <a href="index.html">Home</a>
+                    <a href="map.html">Map</a>
+                    <a href="">News</a>
+                </div>
+            </div>
+        </nav>
         <header></header>
         <main id="index">
             <div class="total info-1">
                 <h1>TOTAL</h1>
                 <div class="cards">
                     <div class="card all-infected">
-                        <h6>Infected</h6>
+                        <h6>All Cases</h6>
                         <span class="number"></span>
-                        <p class="info">Number of infected people of COVID-19</p>
+                        <p class="info">Number of all cases of COVID-19</p>
                     </div>
                     <div class="card all-recovered">
                         <h6>Recovered</h6>
@@ -35,12 +49,12 @@
                 <h1 class="date"></h1>
                 <div class="cards">
                     <div class="card today-infected">
-                        <h6>Infected</h6>
+                        <h6>All Cases</h6>
                         <span class="number"></span>
-                        <p class="info">Number of infected people of COVID-19</p>
+                        <p class="info">Number of all cases COVID-19</p>
                     </div>
                     <div class="card today-active">
-                        <h6>Active</h6>
+                        <h6>Active Cases</h6>
                         <span class="number"></span>
                         <p class="info">Number of current cases of COVID-19</p>
                     </div>
@@ -266,6 +280,7 @@
         </main>
         <footer></footer>
     </div>
+    <script src="js/nav.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

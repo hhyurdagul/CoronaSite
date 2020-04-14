@@ -7,12 +7,6 @@ date.innerHTML = `${day}-${month}-${now.getFullYear()}`;
 
 const mainUrl = "https://corona.lmao.ninja";
 
-async function getData(url) {
-    const response = await fetch(url);
-    const json = await response.json();
-    return json;
-}
-
 const infected = document.querySelector(".all-infected .number");
 const tInfected = document.querySelector(".today-infected .number");
 const deaths = document.querySelector(".all-deaths .number");
@@ -20,6 +14,15 @@ const tDeaths = document.querySelector(".today-deaths .number");
 const recovered = document.querySelector(".all-recovered .number");
 const active = document.querySelector(".today-active .number");
 
+
+async function getData(url) {
+    const response = await fetch(url);
+    const json = await response.json();
+    return json;
+}
+
+
+// Chart function
 let main = (res) => {
     let chart = new CanvasJS.Chart("myChart", {
         animationEnabled: true,
@@ -27,7 +30,7 @@ let main = (res) => {
         legend: {
             horizontalAlign: "center", // left, center ,right 
             verticalAlign: "top",  // top, center, bottom
-            itemWidth: 100
+            itemWidth: 200
         },
         axisY: {
             labelAutoFit: true
@@ -53,17 +56,24 @@ let main = (res) => {
     chart.render();
 }
 
-let world = () => getData(`${mainUrl}/all`).then(data => {
-    infected.innerHTML = data.cases;
-    tInfected.innerHTML = data.todayCases;
-    deaths.innerHTML = data.deaths;
-    tDeaths.innerHTML = data.todayDeaths;
-    recovered.innerHTML = data.recovered;
-    active.innerHTML = data.active;
+// To clear time series
+function clear(dataset){
+    dataset.sort(function(a, b) {
+        let x = new Date(a.label);
+        let y = new Date(b.label);
+        return y>x ? -1 : y<x ? 1 : 0;
+    });
+        
+    for(let i=0;i < dataset.length - 1; i++){
+        if(dataset[i].label == dataset[i+1].label){
+            dataset[i+1].y += dataset[i].y;
+            dataset.splice(i, 1);
+            i--;
+        }
+    }
+}
 
-    getWorldHistorical().then(res => main(res));
-});
-
+// To get world data
 getWorldHistorical = async() => {
     const hist = await getData(`${mainUrl}/v2/historical`);
     let casesData = [];
@@ -75,23 +85,6 @@ getWorldHistorical = async() => {
         Object.entries(i.timeline.recovered).forEach(j => recoveredData.push({label: j[0], y: j[1]}));
     });
     
-    function clear(dataset){
-
-        dataset.sort(function(a, b) {
-            let x = new Date(a.label);
-            let y = new Date(b.label);
-            return y>x ? -1 : y<x ? 1 : 0;
-        });
-            
-        for(let i=0;i < dataset.length - 1; i++){
-            if(dataset[i].label == dataset[i+1].label){
-                dataset[i+1].y += dataset[i].y;
-                dataset.splice(i, 1);
-                i--;
-            }
-        }
-    }
-
     clear(casesData);
     clear(deathsData);
     clear(recoveredData);
@@ -99,9 +92,14 @@ getWorldHistorical = async() => {
     return [casesData, deathsData, recoveredData];
 }
 
-world();
 const country = document.querySelector("#country");
+// To save data
+if(localStorage['country']){
+    let a = localStorage['country'];
+    let b = country.options[a].setAttribute("selected", "");
+}
 
+// To get historical data
 getHistorical = async (c) => {
     const hist = await getData(`${mainUrl}/v2/historical`);
     let cArr = [];
@@ -121,24 +119,6 @@ getHistorical = async (c) => {
     })
 
     if(cArr.length > 1){
-
-        function clear(dataset){
-
-            dataset.sort(function(a, b) {
-                let x = new Date(a.label);
-                let y = new Date(b.label);
-                return y>x ? -1 : y<x ? 1 : 0;
-            });
-            
-            for(let i=0;i < dataset.length - 1; i++){
-                if(dataset[i].label == dataset[i+1].label){
-                    dataset[i+1].y += dataset[i].y;
-                    dataset.splice(i, 1);
-                    i--;
-                }
-            }
-        }
-
         clear(casesData);
         clear(deathsData);
         clear(recoveredData);
@@ -147,29 +127,29 @@ getHistorical = async (c) => {
     return [casesData, deathsData, recoveredData];
 }
 
-country.onchange = async () => {
-    let data, inf, tInf, death, tDeath, recov;
+// To start cycle
+let first = country.onchange = async () => {
+    let data;
+    localStorage['country'] = country.options[country.selectedIndex].index;
     let c = country.options[country.selectedIndex].value;
+
     if(c == "Global"){
         data = await getData(`${mainUrl}/all`);
-        infected.innerHTML = data.cases;
-        tInfected.innerHTML = data.todayCases;
-        deaths.innerHTML = data.deaths;
-        tDeaths.innerHTML = data.todayDeaths;
-        recovered.innerHTML = data.recovered;
-        active.innerHTML = data.active;
-        world();
+        getWorldHistorical().then(res => main(res));
+        
     }else{
         data = await getData(`${mainUrl}/countries/${c}`);
-        infected.innerHTML = data.cases;
-        tInfected.innerHTML = data.todayCases;
-        deaths.innerHTML = data.deaths;
-        tDeaths.innerHTML = data.todayDeaths;
-        recovered.innerHTML = data.recovered;
-        active.innerHTML = data.active;
-
         getHistorical(c).then(res => main(res));
     }
+
+    infected.innerHTML = data.cases;
+    tInfected.innerHTML = data.todayCases;
+    deaths.innerHTML = data.deaths;
+    tDeaths.innerHTML = data.todayDeaths;
+    recovered.innerHTML = data.recovered;
+    active.innerHTML = data.active;
 };
+
+first();
 
 
