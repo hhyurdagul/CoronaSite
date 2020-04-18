@@ -9,7 +9,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: 'pk.eyJ1IjoiYnl0ZXdhaXNlciIsImEiOiJjazh5ajBqcXUwYmkyM2VvZ3dpaW94MzJlIn0.H8chRrMn1K9BjS_aJqsw1g'
 }).addTo(myMap);
 
-const mainUrl = "https://corona.lmao.ninja/countries";
+const mainUrl = "https://corona.lmao.ninja/v2/countries";
 
 let toRemove = [];
 

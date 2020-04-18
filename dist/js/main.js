@@ -5,7 +5,7 @@ let day = now.getUTCDate() < 10 ? `0${now.getUTCDate()}` : `${now.getUTCDate()}`
 let month = now.getUTCMonth()+1 < 10 ? `0${now.getUTCMonth()+1}` : `${now.getUTCMonth()+1}`;
 date.innerHTML = `${day}-${month}-${now.getFullYear()}`;
 
-const mainUrl = "https://corona.lmao.ninja";
+const mainUrl = "https://corona.lmao.ninja/v2";
 
 const infected = document.querySelector(".all-infected .number");
 const tInfected = document.querySelector(".today-infected .number");
@@ -75,7 +75,7 @@ function clear(dataset){
 
 // To get world data
 getWorldHistorical = async() => {
-    const hist = await getData(`${mainUrl}/v2/historical`);
+    const hist = await getData(`${mainUrl}/historical`);
     let casesData = [];
     let deathsData = [];
     let recoveredData = [];
@@ -101,7 +101,7 @@ if(localStorage['country']){
 
 // To get historical data
 getHistorical = async (c) => {
-    const hist = await getData(`${mainUrl}/v2/historical`);
+    const hist = await getData(`${mainUrl}/historical`);
     let cArr = [];
     let casesData = [];
     let deathsData = [];

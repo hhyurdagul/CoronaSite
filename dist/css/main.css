@@ -29,18 +29,18 @@ nav {
     position: fixed;
     z-index: 10; }
   nav .navbar--container {
-    background: #36d4c1;
+    background: rgba(54, 212, 193, 0.9);
     right: 0;
     margin-top: 1.8rem;
-    height: 4rem;
-    width: 4rem;
+    height: 3rem;
+    width: 3rem;
     display: flex;
     justify-content: center;
     align-items: center; }
   nav .navbar--icon {
-    font-size: 2em; }
+    font-size: 1.5em;
+    color: black; }
     nav .navbar--icon:hover {
-      color: white;
       cursor: pointer; }
   nav .nav--open {
     right: 0;
@@ -274,7 +274,9 @@ footer {
     #index .chart {
       max-height: 30wh;
       max-width: 100%;
-      margin: 0 1rem; } }
+      margin: 0 1rem; }
+  #map {
+    padding: 0 2.5rem; } }
 
 @media only screen and (max-width: 526px) {
   #index {
@@ -290,7 +292,9 @@ footer {
     #index .chart {
       max-height: 30wh;
       max-width: 100%;
-      margin: 0 1rem; } }
+      margin: 0 1rem; }
+  #map {
+    padding: 0; } }
 
 @media only screen and (max-width: 426px) {
   body {
@@ -310,4 +314,6 @@ footer {
     #index .chart {
       max-height: 30wh;
       max-width: 100%;
-      margin: 0 1rem; } }
+      margin: 0 1rem; }
+  #map {
+    padding: 0; } }

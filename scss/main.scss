@@ -38,19 +38,19 @@ nav {
         z-index: 10;
     }
     .navbar--container {
-        background: rgb(54, 212, 193);
+        background: rgba(54, 212, 193, 0.9);
         right: 0;
         margin-top: 1.8rem;
-        height: 4rem;
-        width: 4rem;
+        height: 3rem;
+        width: 3rem;
         display: flex;
         justify-content: center;
         align-items: center;
     }
     .navbar--icon {
-        font-size: 2em;
+        font-size: 1.5em;
+        color: black;
         &:hover {
-            color: white;
             cursor: pointer;
         }
     }
@@ -380,6 +380,10 @@ footer {
             margin: 0 1rem;
         }
     }
+    
+    #map {
+        padding: 0 2.5rem;
+    }
 }
 
 @media only screen and (max-width: 526px) {
@@ -403,6 +407,10 @@ footer {
             max-width: 100%;
             margin: 0 1rem;
         }
+    }
+    
+    #map {
+        padding: 0;
     }
 }
 
@@ -432,5 +440,9 @@ footer {
             max-width: 100%;
             margin: 0 1rem;
         }
+    }
+
+    #map {
+        padding: 0;
     }
 }
