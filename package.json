@@ -12,7 +12,7 @@
   "author": "ByteWaiser",
   "license": "ISC",
   "dependencies": {
-    "node-sass": "^4.13.1"
+    "node-sass": "^7.0.0"
   },
   "devDependencies": {
     "gh-pages": "^2.2.0"
