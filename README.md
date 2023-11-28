@@ -1,8 +1,11 @@
 # CoronaSite
 Covid-19 Virus tracker site created using vanilla JS
 
+[Live](https://bytewaiser.github.io/CoronaSite/)
+
 # API
-https://documenter.getpostman.com/view/8854915/SzS7R6uu?version=latest
+
+API URL: https://disease.sh/v3/covid-19
 
 # Requirements
-Just scss. And for development I used nodemon
+Just scss

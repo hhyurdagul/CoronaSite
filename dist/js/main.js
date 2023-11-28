@@ -5,7 +5,7 @@ let day = now.getUTCDate() < 10 ? `0${now.getUTCDate()}` : `${now.getUTCDate()}`
 let month = now.getUTCMonth()+1 < 10 ? `0${now.getUTCMonth()+1}` : `${now.getUTCMonth()+1}`;
 date.innerHTML = `${day}-${month}-${now.getFullYear()}`;
 
-const mainUrl = "https://corona.lmao.ninja/v2";
+const mainUrl = "https://disease.sh/v3/covid-19";
 
 const infected = document.querySelector(".all-infected .number");
 const tInfected = document.querySelector(".today-infected .number");
