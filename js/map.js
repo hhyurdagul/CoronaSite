@@ -9,7 +9,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: 'pk.eyJ1IjoiYnl0ZXdhaXNlciIsImEiOiJjazh5ajBqcXUwYmkyM2VvZ3dpaW94MzJlIn0.H8chRrMn1K9BjS_aJqsw1g'
 }).addTo(myMap);
 
-const mainUrl = "https://corona.lmao.ninja/v2/countries";
+const mainUrl = "https://disease.sh/v3/covid-19/countries";
 
 let toRemove = [];
 
@@ -38,7 +38,7 @@ async function drawRecovered(){
             opacity: 0.8,
             fillColor: "green",
             fillOpacity: 0.8,
-            radius: data.recovered
+            radius: data.recovered / 100
         }).addTo(myMap);
         circle.bindPopup(`${data.country} <img src="${data.countryInfo.flag}" width=20px><br>Recovered: ${data.recovered}`);
         toRemove.push(circle._leaflet_id);
@@ -55,7 +55,7 @@ async function drawActive(){
             opacity: 0.8,
             fillColor: "blue",
             fillOpacity: 0.8,
-            radius: data.active
+            radius: data.active / 10
         }).addTo(myMap);
         circle.bindPopup(`${data.country} <img src="${data.countryInfo.flag}" width=20px><br>Active: ${data.active}`);
         toRemove.push(circle._leaflet_id);
@@ -72,7 +72,7 @@ async function drawDeaths(){
             opacity: 0.8,
             fillColor: "red",
             fillOpacity: 0.8,
-            radius: data.deaths
+            radius: data.deaths / 10
         }).addTo(myMap);
         circle.bindPopup(`${data.country} <img src="${data.countryInfo.flag}" width=20px><br>Deaths: ${data.deaths}`);
         toRemove.push(circle._leaflet_id);
